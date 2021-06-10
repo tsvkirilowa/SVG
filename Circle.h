@@ -12,8 +12,8 @@ private:
 	char* colour;
 	void destroy();
 	
-	//virtual bool WithinCircle(int centerx, int centery, int radius) override;
-    //virtual bool WithinRectangle(int x, int y, int width, int height) override;
+	virtual bool WithinCircle(int centerx, int centery, int radius) override;
+    virtual bool WithinRectangle(int heightx, int widthx, int heighty, int widthy) override;
 
 public:
 	Circle();

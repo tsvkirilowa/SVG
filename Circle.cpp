@@ -6,7 +6,7 @@ void Circle::destroy()
 	delete[] this->colour;
 }
 
-/*bool Circle::WithinCircle(int centerx, int centery, int radius)
+bool Circle::WithinCircle(int centerx, int centery, int radius)
 {
 	double x = centerx - this->centerx;
 	double y = centery - this->centery;
@@ -24,7 +24,7 @@ bool Circle::WithinRectangle(int heightx, int widthx, int heighty, int widthy)
 {
 	bool condition = (heightx <= (centerx - radius) && (centerx + radius) <= (heightx + heighty)) && (widthx <= (centery - radius) && (centery + radius) <= (widthx + widthy));
 	return condition;
-}*/
+}
 
 Circle::Circle()
 {

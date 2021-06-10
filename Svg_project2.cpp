@@ -3,10 +3,14 @@
 #include "Shape.h"
 # include "Vector.h"
 #include"Rectangle.h"
+#include"File.h"
+#include"Engine.h"
 
 int main()
 {
-    Vector<Shape*> shapes;
+    Engine engine;
+    engine.Run();
+    /*Vector<Shape*> shapes;
     shapes.push_back(new Circle(5,4,3,"red"));
     shapes.push_back(new Rectangle(2, 2, 3, 3, "blue"));
     for (size_t i = 0; i < shapes.getSize(); i++)
@@ -23,7 +27,25 @@ int main()
 
     }
     
-    return 0;
+    return 0;*/
+    /*File workingFile;
+    Vector<block<String>> file, svg;
+    String path = "D:/Tsveti/ФМИ/OPP- praktikum/svg/Svg_project/Svg_project2/test.svg";
+    workingFile.DataExtraction(file, path);
+    for (size_t i = 0; i < file.getSize(); i++)
+    {
+        for (size_t j = 0; j < file[i].data.getSize(); j++)
+        {
+
+            std::cout << file[i].data[j] << std::endl;
+
+        }
+        std::cout << file[i].id << std::endl;
+    }
+
+
+
+    return 0;*/
    
 }
 

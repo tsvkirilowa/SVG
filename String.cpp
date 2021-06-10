@@ -49,6 +49,31 @@ int String::lenght() const
 	return strlen(this->str);
 }
 
+void String::clear()
+{
+	delete[] str;
+	copy("");
+}
+
+const char* String::c_str() const
+{
+	return str;
+}
+
+bool String::isEmpty() const
+{
+	return _len == 0;
+}
+
+char* String::begin() const
+{
+	return(str);
+}
+
+
+
+
+
 String& String::operator=(const String& other)
 {
 	if (this != &other)
@@ -74,6 +99,26 @@ String& String::operator=(char s)
 	this->str[0] = s;
 	this->str[1] = 0;
 	return *this;
+}
+
+Vector<String> String::split(char toSplitBy)
+{
+	Vector<String> result;
+	char str[64];
+
+	for (size_t i = 0, k = 0; i < lenght(); i++, k++) {
+		if (str[i] == toSplitBy || str[i + 1] == '\0') {
+			if (str[i + 1] == '\0') {
+				str[k] = str[i];
+				str[k + 1] = '\0';
+			}
+			else str[k] = '\0';
+			k = -1;
+			result.push_back(str);
+		}
+		else str[k] = str[i];
+	}
+	return result;
 }
 
 String String::operator+(char s)
@@ -105,9 +150,21 @@ String String::operator+(const String& other)
 	return result;
 }
 
+String String::operator+=(const String& rhs)
+{
+	return *(this) + rhs;
+}
+
+
+
 char& String::operator[](size_t i)
 {
 	return this->str[i];
+}
+
+bool String::operator==(const char* c)
+{
+	return strcmp(this->c_str(), c) == 0;
 }
 
 bool String::operator==(const String& other)
@@ -144,6 +201,38 @@ bool String::operator>=(const String& other)
 {
 	if (strcmp(this->str, other.str) == 1 || strcmp(this->str, other.str) == 0)return true;
 	return false;
+}
+
+
+
+std::istream& getline(std::istream& is, String& str)
+{
+	char* c = new char[100];
+	is.get(c, 100);
+	int i = 0;
+	while (c[i] != '\n' && i < strlen(c))
+	{
+		str += c[i];
+		++i;
+	}
+	str.str[str._len] = NULL;
+	delete[]c;
+	return is;
+}
+
+std::istream& getline(std::istream& is, String& str, char delim)
+{
+	char* c = new char[100];
+	is.get(c, 100, delim);
+	int i = 0;
+	while (c[i] != delim && i < strlen(c))
+	{
+		str += c[i];
+		++i;
+	}
+	str.str[str._len] = NULL;
+	delete[]c;
+	return is;
 }
 
 std::ostream& operator<<(std::ostream& out, const String& s)
@@ -197,14 +286,17 @@ String toLower(String s)
 
 String toString(size_t x)
 {
-	String result;
+	String result = "";
 	while (x)
 	{
 		if (x < 10)
-		return  result = '0' + x;
-	    result = result + ('0' + (x % 10));
+		{
+			result = ('0' + x) + result;
+			break;
+		}
+		result = ('0' + (x % 10)) + result;
 		x = x / 10;
-		
+
 	}
 	return result;
 }

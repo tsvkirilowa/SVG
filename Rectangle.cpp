@@ -1,19 +1,27 @@
 #include "Rectangle.h"
+#include<iostream>
 
 void Rectangle::destroy()
 {
 	delete[] this->colour;
 }
 
-/*bool Rectangle::WithinCircle(int centerx, int centery, int radius)
+bool Rectangle::WithinCircle(int centerx, int centery, int radius)
 {
+    bool condition = (heightx <= (centerx - radius) && (centerx + radius) <= (heightx + heighty)) && (widhtx <= (centery - radius) && (centery + radius) <= (widhtx + widhty));
+    return condition;
    
 }
 
-bool Rectangle::WithinRectangle(int x, int y, int width, int height)
+bool Rectangle::WithinRectangle(int heightx, int widhtx, int heighty, int widhty)
 {
+    if (((this->heightx + this->heighty) < (heightx + heighty)) && (this->heightx > heightx)
+        && (this->widhtx > widhtx) && ((this->widhtx + this->heighty) < (widhtx + heighty)))
+    {
+         return true;
+    }
     return false;
-}*/
+}
 
 Rectangle::Rectangle()
 {

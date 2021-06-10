@@ -29,6 +29,7 @@ public:
 	void pop();
 	void push_back(const T&);
 	void pop_back();
+	void clear();
 
 	friend std::ostream& operator<<(std::ostream& out, const Vector<T>&);
 };
@@ -118,6 +119,7 @@ T& Vector<T>::operator[](size_t i)
 	return at(i);
 }
 
+
 template<typename T>
 bool Vector<T>::isEmpty() const
 {
@@ -162,6 +164,14 @@ template<typename T>
 void Vector<T>::pop_back()
 {
 	size--;
+}
+
+template<typename T>
+inline void Vector<T>::clear()
+{
+	delete[] data;
+	data = new T[capacity];
+	size = 0;
 }
 
 template<typename T>
